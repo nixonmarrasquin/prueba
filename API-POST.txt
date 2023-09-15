@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            // Token de autorización
+            var authToken = "3551f43bcea070b0cc642032622f34dc799a1cfbb0ce4026c4714823917ff816";
+
+            // Datos que deseas enviar en el cuerpo de la solicitud POST
+            var postData = {
+                "identifier": "0932004849001"
+            };
+
+            // Encabezados personalizados que deseas incluir en la solicitud
+            var headers = {
+                'X-Pardux-Authorization': authToken
+            };
+
+            $.ajax({
+                url: 'https://app.pardux.com/api/loyalty/tracking',
+                crossDomain: true,
+                xhrFields:{    
+                        withCredentials: false  
+                    },
+                method: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(postData),
+                contentType: 'application/json',
+                headers: headers,
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
